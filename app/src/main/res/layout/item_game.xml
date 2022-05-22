@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="104dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/corners">
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/first_teamPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_assets_brooklyn_nets_transparent"
+
+
+        />
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/second_teamPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_assets_charlotte_hornets_transparent"
+        />
+
+    <TextView
+        android:id="@+id/tv_first_teamAbb"
+        style="@style/AssistiveNLv1Center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="LAL"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_teamPhoto"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/tv_second_teamAbb"
+        style="@style/AssistiveNLv1Center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="LAC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_teamPhoto"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_first_score"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/first_teamPhoto"
+        android:text="100"
+        android:textSize="36sp"
+        android:layout_marginStart="30dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_second_score"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/second_teamPhoto"
+        android:text="100"
+        android:textSize="36sp"
+        android:layout_marginEnd="30dp"
+        />
+    <TextView
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:text="--"
+        android:id="@+id/scoreline"
+        app:layout_constraintStart_toEndOf="@id/tv_first_score"
+        app:layout_constraintEnd_toStartOf="@id/tv_second_score"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_date"
+        app:layout_constraintBottom_toTopOf="@id/scoreline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp"
+        style="@style/DescriptionNLv1Center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_gametime"
+        app:layout_constraintTop_toBottomOf="@id/scoreline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp"
+        style="@style/DescriptionNLv2Center"
+        android:layout_marginTop="12dp"
+        android:text="FINAL"
+        />
+    <View
+        android:backgroundTint="@color/surface_surface_0"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_first_score"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

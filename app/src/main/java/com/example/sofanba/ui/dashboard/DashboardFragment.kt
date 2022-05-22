@@ -1,0 +1,84 @@
+package com.example.sofanba.ui.dashboard
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sofanba.databinding.FragmentDashboardBinding
+import com.example.sofanba.model.Team
+import com.example.sofanba.recview.OnTeamEventListener
+import com.example.sofanba.recview.PlayerPagingAdapter
+import com.example.sofanba.recview.TeamRecyclerAdapter
+import com.example.sofanba.util.TeamActivity
+
+class DashboardFragment : Fragment() {
+    private val favoriteviewModel: DashboardViewModel by activityViewModels()
+    private var _binding: FragmentDashboardBinding? = null
+    private lateinit var teamRecyclerAdapter: TeamRecyclerAdapter
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        favoriteviewModel.favouritesList.observe(viewLifecycleOwner){
+            binding.rvFavouriteTeam.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+
+            teamRecyclerAdapter = TeamRecyclerAdapter(adapterListener)
+            teamRecyclerAdapter.setTeams(it.toCollection(arrayListOf()))
+
+            binding.rvFavouriteTeam.adapter = teamRecyclerAdapter
+
+        }
+        favoriteviewModel.getFavouriteTeams(requireContext())
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    private val adapterListener=object : OnTeamEventListener {
+        override fun onTeamSelected(team: Team) {
+            val intent= Intent(activity, TeamActivity::class.java).apply {
+                putExtra("team",team)
+            }
+            startActivity(intent)
+            Toast.makeText(activity,"Item is clicked", Toast.LENGTH_LONG).show()
+
+
+        }
+
+        override fun onTeamImageButtonSelected(team: Team) {
+
+            if (team.isFavourite){
+                favoriteviewModel.insertFavouriteTeam(requireContext(),team)
+
+            }else{
+                favoriteviewModel.deleteFavouriteTeam(requireContext(),team)
+
+            }
+
+        }
+    }
+}
