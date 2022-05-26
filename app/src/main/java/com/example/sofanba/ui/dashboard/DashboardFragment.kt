@@ -12,16 +12,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentDashboardBinding
+import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
-import com.example.sofanba.recview.OnTeamEventListener
-import com.example.sofanba.recview.PlayerPagingAdapter
-import com.example.sofanba.recview.TeamRecyclerAdapter
+import com.example.sofanba.recview.*
 import com.example.sofanba.util.TeamActivity
 
 class DashboardFragment : Fragment() {
     private val favoriteviewModel: DashboardViewModel by activityViewModels()
     private var _binding: FragmentDashboardBinding? = null
     private lateinit var teamRecyclerAdapter: TeamRecyclerAdapter
+    private lateinit var playerRecyclerAdapter: PlayerRecyclerAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -50,6 +50,20 @@ class DashboardFragment : Fragment() {
 
         }
         favoriteviewModel.getFavouriteTeams(requireContext())
+        favoriteviewModel.favouritePlayerList.observe(viewLifecycleOwner){
+            binding.rvFavouritePlayers.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+
+            playerRecyclerAdapter = PlayerRecyclerAdapter(playerListener)
+            playerRecyclerAdapter.setPlayers(it.toCollection(arrayListOf()))
+
+            binding.rvFavouritePlayers.adapter = playerRecyclerAdapter
+
+        }
+        favoriteviewModel.getFavouritePlayers(requireContext())
 
         return root
     }
@@ -76,6 +90,30 @@ class DashboardFragment : Fragment() {
 
             }else{
                 favoriteviewModel.deleteFavouriteTeam(requireContext(),team)
+
+            }
+
+        }
+    }
+
+    private val playerListener=object : OnPlayerEventListener {
+        override fun onPlayerSelected(player:Player) {
+            /*val intent= Intent(activity, TeamActivity::class.java).apply {
+                putExtra("team",team)
+            }
+            startActivity(intent)
+            Toast.makeText(activity,"Item is clicked", Toast.LENGTH_LONG).show()*/
+
+
+        }
+
+        override fun onImageButtonSelected(player: Player) {
+
+            if (player.isFavourite){
+                favoriteviewModel.insertFavouritePlayer(requireContext(),player)
+
+            }else{
+                favoriteviewModel.deleteFavouritePlayer(requireContext(),player)
 
             }
 

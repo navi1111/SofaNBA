@@ -17,7 +17,7 @@ class GamePagingSource(val service: NetworkService): PagingSource<Int, Game>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Game> {
         return try{
             val nextPageNumber=params.key ?: 0
-            val response=service.getAllGames(nextPageNumber+20)
+            val response=service.getAllGames(nextPageNumber)
             LoadResult.Page(
                 data = response.games,
                 prevKey = null,

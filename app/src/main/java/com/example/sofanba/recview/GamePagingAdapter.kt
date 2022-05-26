@@ -13,8 +13,7 @@ import com.example.sofanba.model.Game
 import com.example.sofanba.model.Player
 import com.example.sofanba.util.TeamIconHelper
 
-class GamePagingAdapter(private val context: Context, diffCallback: DiffUtil.ItemCallback<Game>):
-    PagingDataAdapter<Game, GamePagingAdapter.GameViewHolder>(diffCallback) {
+class GamePagingAdapter(private val context: Context, diffCallback: DiffUtil.ItemCallback<Game>): PagingDataAdapter<Game, GamePagingAdapter.GameViewHolder>(diffCallback) {
 
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

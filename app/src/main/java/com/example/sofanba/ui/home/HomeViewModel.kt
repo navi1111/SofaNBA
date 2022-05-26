@@ -10,7 +10,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.sofanba.database.AppDatabase
+import com.example.sofanba.model.FavouritePlayer
 import com.example.sofanba.model.FavouriteTeam
+import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.Network
 import com.example.sofanba.network.paging.PlayerPagingSource
@@ -36,6 +38,17 @@ class HomeViewModel : ViewModel() {
     fun deleteFavouriteTeam(context: Context, team: Team){
         viewModelScope.launch {
             AppDatabase.getDatabase(context).teamDao().deleteTeam(FavouriteTeam(team.id!!))
+        }
+    }
+    fun insertFavouritePlayer(context: Context, player: Player){
+        viewModelScope.launch {
+            AppDatabase.getDatabase(context).playerDao().insertFavouritePlayer(FavouritePlayer( player.id!!))
+        }
+
+    }
+    fun deleteFavouritePlayer(context: Context, player: Player){
+        viewModelScope.launch {
+            AppDatabase.getDatabase(context).playerDao().deletePlayer(FavouritePlayer(player.id!!))
         }
     }
 }

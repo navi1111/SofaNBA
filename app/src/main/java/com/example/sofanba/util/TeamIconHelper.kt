@@ -40,4 +40,41 @@ class TeamIconHelper {
 
         }
     }
+    fun getTeamColor(teamAbb:String):Int{
+        when(teamAbb){
+            "LAL" -> return R.color.team_lakers_primary
+            "BKN" -> return R.color.team_nets_primary
+            "BOS" -> return R.color.team_celtics_primary
+            "CHA" -> return R.color.team_hornets_primary
+            "CHI" -> return R.color.team_bulls_primary
+            "CLE" -> return R.color.team_cavaliers_primary
+            "DAL" -> return R.color.team_mavericks_primary
+            "DEN" -> return R.color.team_nuggets_primary
+            "DET" -> return R.color.team_pistons_primary
+            "GSW" -> return R.color.team_warriors_primary
+            "HOU" -> return R.color.team_rockets_primary
+            "IND" -> return R.color.team_pacers_primary
+            "LAC" -> return R.color.team_clippers_primary
+            "ATL" -> return R.color.team_hawks_primary
+            "MEM" -> return R.color.team_grizzlies_primary
+            "MIA" -> return R.color.team_heat_primary
+            "MIL" -> return R.color.team_bucks_primary
+            "MIN" -> return R.color.team_timberwolves_primary
+            "NOP" -> return R.color.team_pelicans_primary
+            "NYK" -> return R.color.team_knicks_primary
+            "OKC" -> return R.color.team_thunder_primary
+            "ORL" -> return R.color.team_magic_primary
+            "PHI" -> return R.color.on_color_on_color_primary
+            "PHX" -> return R.color.team_suns_primary
+            "POR" -> return R.color.team_blazers_primary
+            "SAC" -> return R.color.team_kings_primary
+            "SAS" -> return R.color.team_spurs_primary
+            "TOR" -> return R.color.team_raptors_primary
+            "UTA" -> return R.color.team_jazz_primary
+            "WAS" -> return R.color.team_wizards_primary
+            else ->
+                return R.color.color_primary
+
+        }
+    }
 }

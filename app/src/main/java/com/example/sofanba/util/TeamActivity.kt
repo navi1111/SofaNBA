@@ -6,14 +6,17 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColor
+import com.example.sofanba.R
 import com.example.sofanba.databinding.ActivityTeamBinding
 import com.example.sofanba.model.Team
 import com.example.sofanba.util.main.SectionsPagerAdapter
 
 
 class TeamActivity : AppCompatActivity() {
-    private var team= Team()
-    private lateinit var binding: ActivityTeamBinding
+     lateinit var team:Team
+     private lateinit var binding: ActivityTeamBinding
+     private val teamIconHelper=TeamIconHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,9 @@ class TeamActivity : AppCompatActivity() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
         team=intent.getSerializableExtra("team") as Team
+        binding.title.text=team.fullName
+        binding.tabs.setBackgroundColor(resources.getColor(teamIconHelper.getTeamColor(team.abbreviation ?: "LAL")))
+        binding.appBarLayout.setBackgroundColor(resources.getColor(teamIconHelper.getTeamColor(team.abbreviation ?: "LAL")))
 
 
     }

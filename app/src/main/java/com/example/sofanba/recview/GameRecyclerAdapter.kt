@@ -1,16 +1,24 @@
 package com.example.sofanba.recview
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
 import com.example.sofanba.databinding.ItemGameBinding
+import com.example.sofanba.databinding.ItemSimpleGameBinding
 import com.example.sofanba.model.Game
 import com.example.sofanba.model.Team
 import com.example.sofanba.util.TeamIconHelper
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
-class GameRecyclerAdapter(/*val onTeamEventListener: OnTeamEventListener*/): RecyclerView.Adapter<GameRecyclerAdapter.GameViewHolder>() {
+class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventListener*/): RecyclerView.Adapter<GameRecyclerAdapter.SimpleGameViewHolder>() {
     private var  games = ArrayList<Game>()
 
 
@@ -21,14 +29,14 @@ class GameRecyclerAdapter(/*val onTeamEventListener: OnTeamEventListener*/): Rec
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleGameViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_game, parent, false)
+            .inflate(R.layout.item_simple_game, parent, false)
 
-        return GameViewHolder(view)
+        return SimpleGameViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SimpleGameViewHolder, position: Int) {
         val game = games[position]
         holder.bind(game)
         /*onTeamEventListener?.let { listener ->
@@ -54,18 +62,42 @@ class GameRecyclerAdapter(/*val onTeamEventListener: OnTeamEventListener*/): Rec
 
 
 
-    inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(game: Game) {
+    inner class SimpleGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(game: Game){
+
             val teamIconHelper= TeamIconHelper()
-            val binding = ItemGameBinding.bind(itemView)
-            binding.firstTeamPhoto.setImageResource(teamIconHelper.getWeatherIcon(game.homeTeam?.abbreviation ?: "LAL"))
-            binding.secondTeamPhoto.setImageResource(teamIconHelper.getWeatherIcon(game.visitorTeam?.abbreviation ?: "BOS"))
-            binding.tvFirstScore.text=game.homeTeamScore.toString()
-            binding.tvSecondScore.text=game.visitorTeamScore.toString()
-            binding.tvGametime.text=game.status
-            binding.tvDate.text=game.date
-            binding.tvFirstTeamAbb.text=game.homeTeam?.abbreviation
-            binding.tvSecondTeamAbb.text=game.visitorTeam?.abbreviation
+            val binding = ItemSimpleGameBinding.bind(itemView)
+            binding.tvGamedate.text=game.date.toString()
+            binding.teamFirstScore.text=game?.homeTeamScore.toString()
+            binding.teamSecondScore.text=game?.visitorTeamScore.toString()
+            if(team.id==game.homeTeam?.id){
+                binding.tvGameplace.text="vs"
+                binding.ivOpponentPhoto.setImageResource(teamIconHelper.getWeatherIcon(game.visitorTeam?.abbreviation!!))
+                binding.tvOpponentAbb.text=game?.visitorTeam?.abbreviation
+
+
+                if (game.homeTeamScore?.compareTo(game.visitorTeamScore!!)!! > 0){
+                    binding.tvGameOutcome.text="W"
+                }else{
+                    binding.tvGameOutcome.text="L"
+                }
+
+            }
+            if(team.id==game.visitorTeam?.id){
+                binding.tvGameplace.text="@"
+                binding.ivOpponentPhoto.setImageResource(teamIconHelper.getWeatherIcon(game.homeTeam?.abbreviation!!))
+
+                if (game.visitorTeamScore?.compareTo(game.homeTeamScore!!)!! > 0){
+                    binding.tvGameOutcome.text="W"
+                }else{
+                    binding.tvGameOutcome.text="L"
+                }
+            }
+
+
+
+
+
 
 
         }

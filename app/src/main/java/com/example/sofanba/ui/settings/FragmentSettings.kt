@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.sofanba.R
+import com.example.sofanba.databinding.FragmentDashboardBinding
 import com.example.sofanba.databinding.FragmentSettingsBinding
 
 
@@ -22,7 +23,10 @@ class FragmentSettings : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
+        //return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
 

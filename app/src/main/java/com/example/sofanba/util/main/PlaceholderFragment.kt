@@ -6,28 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentTeamBinding
+import com.example.sofanba.model.Team
+import com.example.sofanba.recview.GameRecyclerAdapter
+import com.example.sofanba.recview.TeamRecyclerAdapter
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class PlaceholderFragment : Fragment() {
 
-    private lateinit var pageViewModel: PageViewModel
+    private val pageViewModel: PageViewModel by activityViewModels()
     private var _binding: FragmentTeamBinding? = null
-
+    private lateinit var gameAdapter:GameRecyclerAdapter
+    private var team:Team= Team()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,34 +36,25 @@ class PlaceholderFragment : Fragment() {
 
         _binding = FragmentTeamBinding.inflate(inflater, container, false)
         val root = binding.root
+        team=activity?.intent?.getSerializableExtra("team") as Team
+        pageViewModel.gamesList.observe(viewLifecycleOwner){
+            binding.rvGamesforTeam.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
 
-        val textView: TextView = binding.sectionLabel
-        pageViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+            gameAdapter = GameRecyclerAdapter(team)
+            gameAdapter.setTeams(it.toCollection(arrayListOf()))
+
+            binding.rvGamesforTeam.adapter = gameAdapter
+
+        }
+        pageViewModel.getGamesofOneTeam(team)
         return root
     }
 
-    companion object {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private const val ARG_SECTION_NUMBER = "section_number"
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): PlaceholderFragment {
-            return PlaceholderFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

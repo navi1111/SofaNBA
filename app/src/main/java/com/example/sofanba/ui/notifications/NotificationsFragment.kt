@@ -39,6 +39,11 @@ class NotificationsFragment : Fragment() {
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        binding.rvGames.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
         /*seasonsViewModel.gameList.observe(viewLifecycleOwner){
             binding.rvGames.layoutManager = LinearLayoutManager(
                 context,

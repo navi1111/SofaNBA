@@ -1,19 +1,21 @@
 package com.example.sofanba.recview
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
 import com.example.sofanba.databinding.ItemPlayerBinding
 import com.example.sofanba.model.Player
-import com.example.sofanba.model.PlayersData
+import com.example.sofanba.model.Team
 
-class PlayerPagingAdapter(private val context: Context, diffCallback:DiffUtil.ItemCallback<Player>, val onPlayerEventListener: OnPlayerEventListener):PagingDataAdapter<Player,PlayerPagingAdapter.PlayerViewHolder>(diffCallback) {
-
+class PlayerRecyclerAdapter(val onPlayerEventListener: OnPlayerEventListener): RecyclerView.Adapter<PlayerRecyclerAdapter.PlayerViewHolder>() {
+    private var  players = ArrayList<Player>()
+    fun setPlayers(players: ArrayList<Player>) {
+        this.players.clear()
+        this.players.addAll(players)
+        this.notifyDataSetChanged()
+    }
     inner class PlayerViewHolder(itemview: View): RecyclerView.ViewHolder(itemview){
         fun bind(player: Player) {
 
@@ -33,8 +35,15 @@ class PlayerPagingAdapter(private val context: Context, diffCallback:DiffUtil.It
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_player, parent, false)
+
+        return PlayerViewHolder(view)
+    }
+
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-        val player=getItem(position)
+        val player=players[position]
         if (player != null) {
             holder.bind(player)
         }
@@ -45,10 +54,7 @@ class PlayerPagingAdapter(private val context: Context, diffCallback:DiffUtil.It
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_player, parent, false)
-
-        return PlayerViewHolder(view)
+    override fun getItemCount(): Int {
+        return players.count()
     }
 }

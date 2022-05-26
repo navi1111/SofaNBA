@@ -14,8 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.R
 import com.example.sofanba.databinding.FragmentHomeBinding
+import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.paging.PlayerDiff
+import com.example.sofanba.recview.OnPlayerEventListener
 import com.example.sofanba.recview.OnTeamEventListener
 import com.example.sofanba.recview.PlayerPagingAdapter
 import com.example.sofanba.recview.TeamRecyclerAdapter
@@ -68,7 +70,12 @@ class HomeFragment : Fragment() {
                 ) {
                     text = adapterView?.getItemAtPosition(position).toString()
                     if (text=="Players"){
-                        pagingAdapter= PlayerPagingAdapter(requireContext(),PlayerDiff)
+                        binding.rvHome.layoutManager = LinearLayoutManager(
+                            context,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        pagingAdapter= PlayerPagingAdapter(requireContext(),PlayerDiff, playerListener)
                         binding.rvHome.adapter=pagingAdapter
                         lifecycleScope.launch {
                             homeViewModel.flow.collectLatest {
@@ -121,6 +128,31 @@ class HomeFragment : Fragment() {
 
             }else{
                 homeViewModel.deleteFavouriteTeam(requireContext(),team)
+
+            }
+
+        }
+    }
+
+
+    private val playerListener=object : OnPlayerEventListener {
+        override fun onPlayerSelected(player: Player) {
+            /*val intent= Intent(activity, TeamActivity::class.java).apply {
+                putExtra("team",team)
+            }
+            startActivity(intent)
+            Toast.makeText(activity,"Item is clicked", Toast.LENGTH_LONG).show()*/
+
+
+        }
+
+        override fun onImageButtonSelected(player: Player) {
+
+            if (player.isFavourite){
+                homeViewModel.insertFavouritePlayer(requireContext(),player)
+
+            }else{
+                homeViewModel.deleteFavouritePlayer(requireContext(),player)
 
             }
 

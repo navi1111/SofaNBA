@@ -1,18 +1,16 @@
 package com.example.sofanba.util.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.sofanba.model.Game
+import com.example.sofanba.model.Team
+import com.example.sofanba.network.Network
+import kotlinx.coroutines.launch
 
 class PageViewModel : ViewModel() {
-
-    private val _index = MutableLiveData<Int>()
-    val text: LiveData<String> = Transformations.map(_index) {
-        "Hello world from section: $it"
-    }
-
-    fun setIndex(index: Int) {
-        _index.value = index
+    val gamesList:MutableLiveData<List<Game>> = MutableLiveData<List<Game>>()
+    fun getGamesofOneTeam(team: Team){
+        viewModelScope.launch {
+            gamesList.value=Network().getservice().getGamesbyTeam(team.id!!).games
+        }
     }
 }
