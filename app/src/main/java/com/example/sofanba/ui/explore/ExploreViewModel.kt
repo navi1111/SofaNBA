@@ -1,34 +1,31 @@
-package com.example.sofanba.ui.dashboard
+package com.example.sofanba.ui.explore
+
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.example.sofanba.database.AppDatabase
 import com.example.sofanba.model.FavouritePlayer
 import com.example.sofanba.model.FavouriteTeam
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.Network
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
+import com.example.sofanba.network.paging.PlayerPagingSource
 import kotlinx.coroutines.launch
 
-class DashboardViewModel : ViewModel() {
-    val favouritesList=MutableLiveData<List<Team>>()
-    val favouritePlayerList=MutableLiveData<List<Player>>()
-    fun getFavouriteTeams(context: Context){
-        viewModelScope.launch {
-            val startList= AppDatabase.getDatabase(context).teamDao().getAll()
-            val asynctasks=startList.map {
-                async {
-                    Network().getservice().getSpecificTeam(it.id!!)
-                }
-            }
-            val responses = asynctasks.awaitAll()
-            favouritesList.value=responses as List<Team>
+class ExploreViewModel : ViewModel() {
+    val teamList=MutableLiveData<ArrayList<Team>>()
+    val flow = Pager(PagingConfig(pageSize = 20)){
+        PlayerPagingSource(Network().getservice())
+    }.flow.cachedIn(viewModelScope)
 
+    fun getTeams(){
+        viewModelScope.launch {
+            teamList.value=Network().getservice().getAllTeams().teams
         }
     }
     fun insertFavouriteTeam(context: Context, team: Team){
@@ -42,18 +39,6 @@ class DashboardViewModel : ViewModel() {
             AppDatabase.getDatabase(context).teamDao().deleteTeam(FavouriteTeam(team.id!!))
         }
     }
-    fun getFavouritePlayers(context: Context){
-        viewModelScope.launch {
-            val startList= AppDatabase.getDatabase(context).playerDao().getAll()
-            val asynctasks=startList.map {
-
-                Network().getservice().getSpecificPlayer(it.id!!)
-            }
-            val responses = asynctasks
-            favouritePlayerList.value=responses as List<Player>
-
-        }
-    }
     fun insertFavouritePlayer(context: Context, player: Player){
         viewModelScope.launch {
             AppDatabase.getDatabase(context).playerDao().insertFavouritePlayer(FavouritePlayer( player.id!!))
@@ -65,5 +50,4 @@ class DashboardViewModel : ViewModel() {
             AppDatabase.getDatabase(context).playerDao().deletePlayer(FavouritePlayer(player.id!!))
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.sofanba.ui.home
+package com.example.sofanba.ui.explore
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.R
-import com.example.sofanba.databinding.FragmentHomeBinding
+import com.example.sofanba.databinding.FragmentExploreBinding
+
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.paging.PlayerDiff
@@ -25,9 +26,9 @@ import com.example.sofanba.util.TeamActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
-    private val homeViewModel: HomeViewModel by activityViewModels()
-    private var _binding: FragmentHomeBinding? = null
+class ExploreFragment : Fragment() {
+    private val exploreViewModel: ExploreViewModel by activityViewModels()
+    private var _binding: FragmentExploreBinding? = null
     private lateinit var adapterTeam: TeamRecyclerAdapter
     private lateinit var pagingAdapter:PlayerPagingAdapter
     // This property is only valid between onCreateView and
@@ -40,7 +41,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
         spinnerInit()
 
@@ -78,7 +79,7 @@ class HomeFragment : Fragment() {
                         pagingAdapter= PlayerPagingAdapter(requireContext(),PlayerDiff, playerListener)
                         binding.rvHome.adapter=pagingAdapter
                         lifecycleScope.launch {
-                            homeViewModel.flow.collectLatest {
+                            exploreViewModel.flow.collectLatest {
 
                                 pagingAdapter.submitData(it)
 
@@ -86,7 +87,7 @@ class HomeFragment : Fragment() {
                         }
                     }
                     if(text=="Teams"){
-                        homeViewModel.teamList.observe(viewLifecycleOwner){
+                        exploreViewModel.teamList.observe(viewLifecycleOwner){
                             binding.rvHome.layoutManager = LinearLayoutManager(
                                 context,
                                 LinearLayoutManager.VERTICAL,
@@ -99,7 +100,7 @@ class HomeFragment : Fragment() {
                             binding.rvHome.adapter = adapterTeam
 
                         }
-                        homeViewModel.getTeams()
+                        exploreViewModel.getTeams()
                     }
                 }
 
@@ -124,10 +125,10 @@ class HomeFragment : Fragment() {
         override fun onTeamImageButtonSelected(team: Team) {
 
            if (team.isFavourite){
-                homeViewModel.insertFavouriteTeam(requireContext(),team)
+                exploreViewModel.insertFavouriteTeam(requireContext(),team)
 
             }else{
-                homeViewModel.deleteFavouriteTeam(requireContext(),team)
+                exploreViewModel.deleteFavouriteTeam(requireContext(),team)
 
             }
 
@@ -149,10 +150,10 @@ class HomeFragment : Fragment() {
         override fun onImageButtonSelected(player: Player) {
 
             if (player.isFavourite){
-                homeViewModel.insertFavouritePlayer(requireContext(),player)
+                exploreViewModel.insertFavouritePlayer(requireContext(),player)
 
             }else{
-                homeViewModel.deleteFavouritePlayer(requireContext(),player)
+                exploreViewModel.deleteFavouritePlayer(requireContext(),player)
 
             }
 

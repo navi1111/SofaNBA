@@ -1,28 +1,23 @@
-package com.example.sofanba.ui.notifications
+package com.example.sofanba.ui.seasons
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sofanba.databinding.FragmentNotificationsBinding
+import com.example.sofanba.databinding.FragmentSeasonsBinding
 import com.example.sofanba.network.paging.GameDiff
-import com.example.sofanba.network.paging.PlayerDiff
 import com.example.sofanba.recview.GamePagingAdapter
 import com.example.sofanba.recview.GameRecyclerAdapter
-import com.example.sofanba.recview.PlayerPagingAdapter
-import com.example.sofanba.recview.TeamRecyclerAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class NotificationsFragment : Fragment() {
-    private val seasonsViewModel:NotificationsViewModel by activityViewModels()
-    private var _binding: FragmentNotificationsBinding? = null
+class SeasonsFragment : Fragment() {
+    private val seasonsViewModel:SeasonsViewModel by activityViewModels()
+    private var _binding: FragmentSeasonsBinding? = null
     private lateinit var gamesAdapter:GameRecyclerAdapter
     private lateinit var pagingAdapter: GamePagingAdapter
 
@@ -37,7 +32,7 @@ class NotificationsFragment : Fragment() {
     ): View {
 
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentSeasonsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.rvGames.layoutManager = LinearLayoutManager(
             context,

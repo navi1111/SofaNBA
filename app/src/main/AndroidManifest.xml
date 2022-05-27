@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sofanba">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,11 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
         <activity
+            android:name=".ui.MatchActivity"
+            android:exported="false"
+            android:label="@string/title_activity_match"
+            android:theme="@style/Theme.SofaNBA.NoActionBar" />
+        <activity
             android:name=".util.TeamActivity"
             android:exported="false"
             android:label="@string/title_activity_team"
             android:theme="@style/Theme.SofaNBA.NoActionBar" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

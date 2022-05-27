@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.sofanba.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.sofanba.ui.explore.ExploreFragment"
+        android:label="Explore"
+        tools:layout="@layout/fragment_explore" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.sofanba.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.sofanba.ui.favourites.FavouritesFragment"
+        android:label="Favourites"
+        tools:layout="@layout/fragment_favourites" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.sofanba.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.sofanba.ui.seasons.SeasonsFragment"
+        android:label="Seasons"
+        tools:layout="@layout/fragment_seasons" />
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.sofanba.ui.settings.FragmentSettings"
-        android:label="fragment_settings"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

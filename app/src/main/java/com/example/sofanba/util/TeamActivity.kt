@@ -10,6 +10,7 @@ import androidx.core.graphics.toColor
 import com.example.sofanba.R
 import com.example.sofanba.databinding.ActivityTeamBinding
 import com.example.sofanba.model.Team
+import com.example.sofanba.util.main.PageViewModel
 import com.example.sofanba.util.main.SectionsPagerAdapter
 
 
@@ -17,6 +18,7 @@ class TeamActivity : AppCompatActivity() {
      lateinit var team:Team
      private lateinit var binding: ActivityTeamBinding
      private val teamIconHelper=TeamIconHelper()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,10 +20,13 @@ interface NetworkService {
     suspend fun getAllGames(@Query ("page" ) page: Int):GamesData
 
     @GET ("games")
-    suspend fun getGamesbyTeam(@Query("team_ids") teamIds:Int):GamesData
+    suspend fun getGamesbyTeam(@Query("page") page:Int, @Query("team_ids") teamIds:Int):GamesData
 
     @GET("players/{ID}")
     suspend fun getSpecificPlayer(@Path("ID")id:Int): Player
+
+    @GET("stats")
+    suspend fun getGameStats(@Query("game_ids") id:Int):StatsData
 
 
 

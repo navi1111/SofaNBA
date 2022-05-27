@@ -5,9 +5,12 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/surface_surface_0"
     tools:context=".util.main.PlaceholderFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:backgroundTint="@color/surface_surface_0"
+        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rv_gamesforTeam"/>

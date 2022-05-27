@@ -9,11 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentTeamBinding
 import com.example.sofanba.model.Team
+import com.example.sofanba.network.paging.GameDiff
+import com.example.sofanba.network.paging.PlayerDiff
+import com.example.sofanba.network.paging.TeamGamesPagingSource
 import com.example.sofanba.recview.GameRecyclerAdapter
+import com.example.sofanba.recview.PlayerPagingAdapter
 import com.example.sofanba.recview.TeamRecyclerAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 /**
  * A placeholder fragment containing a simple view.
@@ -37,20 +44,21 @@ class PlaceholderFragment : Fragment() {
         _binding = FragmentTeamBinding.inflate(inflater, container, false)
         val root = binding.root
         team=activity?.intent?.getSerializableExtra("team") as Team
-        pageViewModel.gamesList.observe(viewLifecycleOwner){
-            binding.rvGamesforTeam.layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
+        pageViewModel.getTeamId(team.id!!)
+        binding.rvGamesforTeam.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+        gameAdapter= GameRecyclerAdapter(team, GameDiff)
+        binding.rvGamesforTeam.adapter=gameAdapter
+        lifecycleScope.launch {
+            pageViewModel.flow.collectLatest {
 
-            gameAdapter = GameRecyclerAdapter(team)
-            gameAdapter.setTeams(it.toCollection(arrayListOf()))
+                gameAdapter.submitData(it)
 
-            binding.rvGamesforTeam.adapter = gameAdapter
-
+            }
         }
-        pageViewModel.getGamesofOneTeam(team)
         return root
     }
 

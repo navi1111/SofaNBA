@@ -4,12 +4,15 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
 import com.example.sofanba.databinding.ItemGameBinding
 import com.example.sofanba.databinding.ItemSimpleGameBinding
 import com.example.sofanba.model.Game
 import com.example.sofanba.model.Team
+import com.example.sofanba.network.paging.TeamGamesPagingSource
 import com.example.sofanba.util.TeamIconHelper
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -18,15 +21,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventListener*/): RecyclerView.Adapter<GameRecyclerAdapter.SimpleGameViewHolder>() {
-    private var  games = ArrayList<Game>()
+class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventListener*/,diffCallback: DiffUtil.ItemCallback<Game>): PagingDataAdapter<Game,GameRecyclerAdapter.SimpleGameViewHolder>(diffCallback) {
 
-
-    fun setTeams(games: ArrayList<Game>) {
-        this.games.clear()
-        this.games.addAll(games)
-        this.notifyDataSetChanged()
-    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleGameViewHolder {
@@ -37,8 +33,8 @@ class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventLis
     }
 
     override fun onBindViewHolder(holder: SimpleGameViewHolder, position: Int) {
-        val game = games[position]
-        holder.bind(game)
+        val game = getItem(position)
+        holder.bind(game!!)
         /*onTeamEventListener?.let { listener ->
             holder.itemView.setOnClickListener {
                 listener.onTeamSelected(game)
@@ -48,26 +44,15 @@ class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventLis
 
     }
 
-    override fun getItemCount(): Int = games.count()
-
-    fun moveItem(from: Int, to: Int) {
-        val fromEmoji = games[from]
-        games.removeAt(from)
-        if (to < from) {
-            games.add(to, fromEmoji)
-        } else {
-            games.add(to - 1, fromEmoji)
-        }
-    }
-
-
-
     inner class SimpleGameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(game: Game){
 
             val teamIconHelper= TeamIconHelper()
             val binding = ItemSimpleGameBinding.bind(itemView)
-            binding.tvGamedate.text=game.date.toString()
+            val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            val formatter = SimpleDateFormat("dd.MM.yyyy")
+            val formattedDate = formatter.format(parser.parse(game.date))
+            binding.tvGamedate.text=formattedDate.toString()
             binding.teamFirstScore.text=game?.homeTeamScore.toString()
             binding.teamSecondScore.text=game?.visitorTeamScore.toString()
             if(team.id==game.homeTeam?.id){

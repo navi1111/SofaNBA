@@ -1,25 +1,24 @@
-package com.example.sofanba.ui.dashboard
+package com.example.sofanba.ui.favourites
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sofanba.databinding.FragmentDashboardBinding
+
+import com.example.sofanba.databinding.FragmentFavouritesBinding
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.recview.*
 import com.example.sofanba.util.TeamActivity
 
-class DashboardFragment : Fragment() {
-    private val favoriteviewModel: DashboardViewModel by activityViewModels()
-    private var _binding: FragmentDashboardBinding? = null
+class FavouritesFragment : Fragment() {
+    private val favoriteviewModel: FavouritesViewModel by activityViewModels()
+    private var _binding: FragmentFavouritesBinding? = null
     private lateinit var teamRecyclerAdapter: TeamRecyclerAdapter
     private lateinit var playerRecyclerAdapter: PlayerRecyclerAdapter
 
@@ -34,7 +33,7 @@ class DashboardFragment : Fragment() {
     ): View {
 
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         favoriteviewModel.favouritesList.observe(viewLifecycleOwner){
             binding.rvFavouriteTeam.layoutManager = LinearLayoutManager(

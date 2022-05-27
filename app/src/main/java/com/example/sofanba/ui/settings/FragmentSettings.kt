@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.sofanba.R
-import com.example.sofanba.databinding.FragmentDashboardBinding
+
 import com.example.sofanba.databinding.FragmentSettingsBinding
 
 
