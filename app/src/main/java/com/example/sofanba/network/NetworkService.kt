@@ -26,7 +26,7 @@ interface NetworkService {
     suspend fun getSpecificPlayer(@Path("ID")id:Int): Player
 
     @GET("stats")
-    suspend fun getGameStats(@Query("game_ids") id:Int):StatsData
+    suspend fun getGameStats(@Query("game_ids[]") id:Array<Int>):StatsData
 
 
 

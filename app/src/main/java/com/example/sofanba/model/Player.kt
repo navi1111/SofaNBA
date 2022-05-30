@@ -44,7 +44,7 @@ data class GamesData (
 )
 data class StatsData (
 
-    @SerializedName("stats" ) var stats : ArrayList<Stats> = arrayListOf(),
+    @SerializedName("data" ) var stats : ArrayList<Stats> = arrayListOf(),
     @SerializedName("meta" ) var meta : Meta?           = Meta()
 
 )
@@ -95,7 +95,7 @@ data class Stats (
     @SerializedName("fg_pct"   ) var fgPct    : Double? = null,
     @SerializedName("fga"      ) var fga      : Int?    = null,
     @SerializedName("fgm"      ) var fgm      : Int?    = null,
-    @SerializedName("ft_pct"   ) var ftPct    : Int?    = null,
+    @SerializedName("ft_pct"   ) var ftPct    : Double?    = null,
     @SerializedName("fta"      ) var fta      : Int?    = null,
     @SerializedName("ftm"      ) var ftm      : Int?    = null,
     @SerializedName("game"     ) var game     : Game?   = Game(),

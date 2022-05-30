@@ -35,6 +35,7 @@ class PlayerRecyclerAdapter(val onPlayerEventListener: OnPlayerEventListener): R
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_player, parent, false)

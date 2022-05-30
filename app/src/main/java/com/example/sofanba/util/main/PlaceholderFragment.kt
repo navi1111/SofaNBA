@@ -1,5 +1,6 @@
 package com.example.sofanba.util.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +13,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentTeamBinding
+import com.example.sofanba.model.Game
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.paging.GameDiff
 import com.example.sofanba.network.paging.PlayerDiff
 import com.example.sofanba.network.paging.TeamGamesPagingSource
 import com.example.sofanba.recview.GameRecyclerAdapter
+import com.example.sofanba.recview.OnGameEventListener
 import com.example.sofanba.recview.PlayerPagingAdapter
 import com.example.sofanba.recview.TeamRecyclerAdapter
+import com.example.sofanba.ui.MatchActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -50,7 +54,7 @@ class PlaceholderFragment : Fragment() {
             LinearLayoutManager.VERTICAL,
             false
         )
-        gameAdapter= GameRecyclerAdapter(team, GameDiff)
+        gameAdapter= GameRecyclerAdapter(team,gameListener ,GameDiff)
         binding.rvGamesforTeam.adapter=gameAdapter
         lifecycleScope.launch {
             pageViewModel.flow.collectLatest {
@@ -67,5 +71,17 @@ class PlaceholderFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private val gameListener=object : OnGameEventListener {
+        override fun onGameSelected(game: Game) {
+            val intent= Intent(activity, MatchActivity::class.java).apply {
+                putExtra("game",game)
+            }
+            startActivity(intent)
+
+
+
+        }
+
     }
 }

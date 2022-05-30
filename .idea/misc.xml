@@ -10,20 +10,24 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/drawable/mybutton_bg.xml" value="0.1395" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/drawable/progressbar_states.xml" value="0.1395" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/activity_main.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/activity_match.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/activity_team.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/activity_team_details.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_dashboard.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_home.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_match.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_match_details.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_notifications.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_settings.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_team.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/fragment_team_info.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/item_game.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/item_player.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/item_playerstats.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/item_simple_game.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/item_simple_team.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/item_team.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/layout/progress_items.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SofaNBA/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>

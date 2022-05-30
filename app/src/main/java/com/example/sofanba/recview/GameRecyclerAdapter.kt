@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventListener*/,diffCallback: DiffUtil.ItemCallback<Game>): PagingDataAdapter<Game,GameRecyclerAdapter.SimpleGameViewHolder>(diffCallback) {
+class GameRecyclerAdapter(val team:Team,val onGameEventListener: OnGameEventListener,diffCallback: DiffUtil.ItemCallback<Game>): PagingDataAdapter<Game,GameRecyclerAdapter.SimpleGameViewHolder>(diffCallback) {
 
 
 
@@ -35,11 +35,11 @@ class GameRecyclerAdapter(val team:Team/*val onTeamEventListener: OnTeamEventLis
     override fun onBindViewHolder(holder: SimpleGameViewHolder, position: Int) {
         val game = getItem(position)
         holder.bind(game!!)
-        /*onTeamEventListener?.let { listener ->
+        onGameEventListener?.let { listener ->
             holder.itemView.setOnClickListener {
-                listener.onTeamSelected(game)
+                listener.onGameSelected(game)
             }
-        }*/
+        }
 
 
     }

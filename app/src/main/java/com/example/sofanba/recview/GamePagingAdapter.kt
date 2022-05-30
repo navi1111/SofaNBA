@@ -13,7 +13,7 @@ import com.example.sofanba.model.Game
 import com.example.sofanba.model.Player
 import com.example.sofanba.util.TeamIconHelper
 
-class GamePagingAdapter(private val context: Context, diffCallback: DiffUtil.ItemCallback<Game>): PagingDataAdapter<Game, GamePagingAdapter.GameViewHolder>(diffCallback) {
+class GamePagingAdapter(val onGameEventListener: OnGameEventListener, diffCallback: DiffUtil.ItemCallback<Game>): PagingDataAdapter<Game, GamePagingAdapter.GameViewHolder>(diffCallback) {
 
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,6 +37,11 @@ class GamePagingAdapter(private val context: Context, diffCallback: DiffUtil.Ite
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = getItem(position)
         holder.bind(game!!)
+        onGameEventListener?.let { listener ->
+            holder.itemView.setOnClickListener {
+                listener.onGameSelected(game!!)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {

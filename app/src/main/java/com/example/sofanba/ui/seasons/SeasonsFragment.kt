@@ -1,5 +1,6 @@
 package com.example.sofanba.ui.seasons
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentSeasonsBinding
+import com.example.sofanba.model.Game
+import com.example.sofanba.model.Player
 import com.example.sofanba.network.paging.GameDiff
 import com.example.sofanba.recview.GamePagingAdapter
 import com.example.sofanba.recview.GameRecyclerAdapter
+import com.example.sofanba.recview.OnGameEventListener
+import com.example.sofanba.recview.OnPlayerEventListener
+import com.example.sofanba.ui.MatchActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -53,7 +59,7 @@ class SeasonsFragment : Fragment() {
 
         }
         seasonsViewModel.getGames()*/
-        pagingAdapter= GamePagingAdapter(requireContext(), GameDiff)
+        pagingAdapter= GamePagingAdapter(gameListener, GameDiff)
         binding.rvGames.adapter=pagingAdapter
         lifecycleScope.launch {
             seasonsViewModel.flow.collectLatest {
@@ -70,5 +76,17 @@ class SeasonsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private val gameListener=object : OnGameEventListener {
+        override fun onGameSelected(game: Game) {
+            val intent= Intent(activity, MatchActivity::class.java).apply {
+                putExtra("game",game)
+            }
+            startActivity(intent)
+
+
+
+        }
+
     }
 }
