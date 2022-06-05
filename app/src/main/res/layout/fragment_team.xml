@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/surface_surface_0"
-    tools:context=".util.main.PlaceholderFragment">
+    tools:context=".ui.team.main.PlaceholderFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:backgroundTint="@color/surface_surface_0"

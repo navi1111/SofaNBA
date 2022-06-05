@@ -14,7 +14,7 @@ import com.example.sofanba.databinding.FragmentFavouritesBinding
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.recview.*
-import com.example.sofanba.util.TeamActivity
+import com.example.sofanba.ui.team.main.TeamActivity
 
 class FavouritesFragment : Fragment() {
     private val favoriteviewModel: FavouritesViewModel by activityViewModels()

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:layout_width="288dp"
+        android:layout_height="56dp"
+        android:id="@+id/tv_label_add_playerphoto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Add player photo"
+        style="@style/HeadlineMediumNLv1Left"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_add_playerphoto"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/ti_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="URL"
+        >
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:id="@+id/urltatv"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paste image url"
+        app:layout_constraintTop_toBottomOf="@id/ti_layout"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tv_pasteimage"
+    />
+    <com.google.android.material.textfield.TextInputLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_pasteimage"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/ti_layouttwo"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="PHOTO TITLE"
+        >
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/phototitletatv"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type a photo title"
+        app:layout_constraintTop_toBottomOf="@id/ti_layouttwo"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tv_photottitlelabel"
+        />
+    <Button
+        android:layout_width="164dp"
+        android:layout_height="48dp"
+        android:text="ADD"
+        app:layout_constraintTop_toBottomOf="@id/tv_photottitlelabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/btn_add_player_image"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

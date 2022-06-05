@@ -22,7 +22,8 @@ import com.example.sofanba.recview.OnPlayerEventListener
 import com.example.sofanba.recview.OnTeamEventListener
 import com.example.sofanba.recview.PlayerPagingAdapter
 import com.example.sofanba.recview.TeamRecyclerAdapter
-import com.example.sofanba.util.TeamActivity
+import com.example.sofanba.ui.playeractivity.PlayerActivity
+import com.example.sofanba.ui.team.main.TeamActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -138,11 +139,11 @@ class ExploreFragment : Fragment() {
 
     private val playerListener=object : OnPlayerEventListener {
         override fun onPlayerSelected(player: Player) {
-            /*val intent= Intent(activity, TeamActivity::class.java).apply {
-                putExtra("team",team)
+            val intent= Intent(activity, PlayerActivity::class.java).apply {
+                putExtra("player",player)
             }
             startActivity(intent)
-            Toast.makeText(activity,"Item is clicked", Toast.LENGTH_LONG).show()*/
+
 
 
         }

@@ -1,4 +1,4 @@
-package com.example.sofanba.ui.ui.main
+package com.example.sofanba.ui.playeractivity.ui.main
 
 import android.content.Context
 import androidx.fragment.app.Fragment
@@ -8,8 +8,9 @@ import com.example.sofanba.R
 
 
 private val TAB_TITLES = arrayOf(
-    R.string.match_details,
-    R.string.top_players
+    R.string.details,
+    R.string.statistics,
+    R.string.matches
 )
 
 /**
@@ -23,10 +24,13 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         if(position==0) {
-            return MatchDetailsFragment()
+            return PlayerFragment()
         }
-        else {
-            return MatchLeadersFragment()
+        else if(position==1){
+            return PlayerStatisticsFragment()
+        }
+        else{
+            return PlayerMatchesFragment()
         }
     }
 
@@ -36,6 +40,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return 3
     }
 }

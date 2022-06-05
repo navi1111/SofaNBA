@@ -30,6 +30,9 @@ class PlayerRecyclerAdapter(val onPlayerEventListener: OnPlayerEventListener): R
                 onPlayerEventListener?.onImageButtonSelected(player)
 
             }
+            if (player.imageUrl==null){
+                binding.ivPlayerPhoto.setImageResource(R.drawable.ic_player_placeholder_graphic_80_dp)
+            }
 
 
         }

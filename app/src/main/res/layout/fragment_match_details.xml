@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.ui.main.MatchDetailsFragment">
+    tools:context=".ui.match.main.MatchDetailsFragment"
+    android:background="@color/surface_surface_1">
 
     <include
         layout="@layout/item_game"
@@ -81,5 +82,19 @@
             android:layout_marginEnd="16dp"
             />
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/second_linear"
+        android:layout_margin="8dp"
+        android:id="@+id/rv_ytvideos"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="ADD"
+        android:id="@+id/btn_add_video_modal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

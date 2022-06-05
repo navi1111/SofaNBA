@@ -1,28 +1,21 @@
-package com.example.sofanba.util.main
+package com.example.sofanba.ui.team.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentTeamBinding
 import com.example.sofanba.model.Game
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.paging.GameDiff
-import com.example.sofanba.network.paging.PlayerDiff
-import com.example.sofanba.network.paging.TeamGamesPagingSource
 import com.example.sofanba.recview.GameRecyclerAdapter
 import com.example.sofanba.recview.OnGameEventListener
-import com.example.sofanba.recview.PlayerPagingAdapter
-import com.example.sofanba.recview.TeamRecyclerAdapter
-import com.example.sofanba.ui.MatchActivity
+import com.example.sofanba.ui.match.main.MatchActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -1,8 +1,5 @@
-package com.example.sofanba.ui.ui.main
+package com.example.sofanba.ui.match.main
 
-import android.content.ContentValues.TAG
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.sofanba.model.Game
 import com.example.sofanba.model.Stats
 import com.example.sofanba.model.Team
+import com.example.sofanba.model.YTVideo
 import com.example.sofanba.network.Network
+import com.example.sofanba.network.SofaNetwork
 import kotlinx.coroutines.launch
 
 class MatchDetailsViewModel:ViewModel() {
     private val _stats= MutableLiveData<ArrayList<Stats>>()
     val stats:LiveData<ArrayList<Stats>> get() = _stats
+    val ytvideos=MutableLiveData<ArrayList<YTVideo>>()
     fun getStatsforGame(game: Game){
         viewModelScope.launch {
             _stats.value= Network().getservice().getGameStats(arrayOf(game.id!!)).stats
@@ -95,6 +95,21 @@ class MatchDetailsViewModel:ViewModel() {
             }
         }
         return fgpct
+    }
+    fun addYTVideo(ytVideo: YTVideo){
+        viewModelScope.launch {
+            SofaNetwork().getservice().addYtVideo(ytVideo)
+        }
+    }
+    fun getYtVideos(game: Game){
+        viewModelScope.launch {
+            try {
+                ytvideos.value=SofaNetwork().getservice().getYtVideo(game.id?:0).data
+            }catch (e:Exception){
+                ytvideos.value= arrayListOf()
+            }
+            //ytvideos.value=SofaNetwork().getservice().getYtVideo(game.id?:0).data
+        }
     }
 
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.sofanba.R
 import com.example.sofanba.databinding.ItemPlayerBinding
 import com.example.sofanba.model.Player
@@ -28,6 +29,9 @@ class PlayerPagingAdapter(private val context: Context, diffCallback:DiffUtil.It
                 onPlayerEventListener?.onImageButtonSelected(player)
 
             }
+            Glide.with(itemView.context).load(player.imageUrl).placeholder(R.drawable.ic_player_placeholder_graphic_80_dp)
+                .error(R.drawable.ic_player_placeholder_graphic_80_dp).into(binding.ivPlayerPhoto)
+
 
 
         }

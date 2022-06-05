@@ -23,6 +23,7 @@ class FavouritesViewModel : ViewModel() {
             val asynctasks=startList.map {
                 async {
                     Network().getservice().getSpecificTeam(it.id!!)
+
                 }
             }
             val responses = asynctasks.awaitAll()

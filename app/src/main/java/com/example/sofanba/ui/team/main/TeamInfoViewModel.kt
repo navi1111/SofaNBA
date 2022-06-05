@@ -1,4 +1,4 @@
-package com.example.sofanba.util.main
+package com.example.sofanba.ui.team.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

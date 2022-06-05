@@ -1,4 +1,4 @@
-package com.example.sofanba.util.main
+package com.example.sofanba.ui.team.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,14 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sofanba.R
-import com.example.sofanba.databinding.FragmentSettingsBinding
 import com.example.sofanba.databinding.FragmentTeamInfoBinding
 import com.example.sofanba.model.Team
 import com.example.sofanba.recview.OnTeamEventListener
 import com.example.sofanba.recview.SimpleTeamAdapter
-import com.example.sofanba.recview.TeamRecyclerAdapter
-import com.example.sofanba.util.TeamActivity
 import com.example.sofanba.util.TeamIconHelper
 
 

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.sofanba"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -67,5 +67,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
     //paging
     implementation("androidx.paging:paging-runtime:$paging_version")
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    kapt 'com.github.bumptech.glide:compiler:4.13.0'
 
 }

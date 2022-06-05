@@ -11,13 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.databinding.FragmentSeasonsBinding
 import com.example.sofanba.model.Game
-import com.example.sofanba.model.Player
 import com.example.sofanba.network.paging.GameDiff
 import com.example.sofanba.recview.GamePagingAdapter
 import com.example.sofanba.recview.GameRecyclerAdapter
 import com.example.sofanba.recview.OnGameEventListener
-import com.example.sofanba.recview.OnPlayerEventListener
-import com.example.sofanba.ui.MatchActivity
+import com.example.sofanba.ui.match.main.MatchActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

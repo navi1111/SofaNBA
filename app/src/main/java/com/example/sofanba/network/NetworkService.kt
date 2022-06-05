@@ -28,6 +28,17 @@ interface NetworkService {
     @GET("stats")
     suspend fun getGameStats(@Query("game_ids[]") id:Array<Int>):StatsData
 
+    @GET("season_averages")
+    suspend fun getSeasonAverages(@Query("player_ids[]") id:Array<Int>,@Query("season") season:Int):SeasonAveragesData
+
+    @GET("stats")
+    suspend fun getGameStatsforPlayer(@Query("page")page:Int,@Query("player_ids[]") id:Array<Int>):StatsData
+
+    @GET("games/{ID}")
+    suspend fun getGamefromStats(@Path("ID") id: Int):Game
+
+
+
 
 
 

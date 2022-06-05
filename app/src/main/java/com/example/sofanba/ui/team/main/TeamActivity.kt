@@ -1,23 +1,18 @@
-package com.example.sofanba.util
+package com.example.sofanba.ui.team.main
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.toColor
-import com.example.sofanba.R
 import com.example.sofanba.databinding.ActivityTeamBinding
 import com.example.sofanba.model.Team
-import com.example.sofanba.util.main.PageViewModel
-import com.example.sofanba.util.main.SectionsPagerAdapter
+import com.example.sofanba.util.TeamIconHelper
 
 
 class TeamActivity : AppCompatActivity() {
      lateinit var team:Team
      private lateinit var binding: ActivityTeamBinding
-     private val teamIconHelper=TeamIconHelper()
+     private val teamIconHelper= TeamIconHelper()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.sofanba.util.main
+package com.example.sofanba.ui.team.main
 
 import android.content.Context
 import androidx.fragment.app.Fragment

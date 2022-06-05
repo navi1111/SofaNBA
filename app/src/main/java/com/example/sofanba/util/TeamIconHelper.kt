@@ -77,4 +77,12 @@ class TeamIconHelper {
 
         }
     }
+    fun getPlayerPosition(input:String):String{
+        when(input){
+            "G" -> return "GUARD"
+            "F" -> return "FORWARD"
+            "C" -> return "CENTER"
+            else -> return "POSITIONLESS"
+        }
+    }
 }
